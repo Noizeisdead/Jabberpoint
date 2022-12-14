@@ -22,22 +22,6 @@ public class MenuController extends MenuBar {
 	
 	private Frame parent; //The frame, only used as parent for the Dialogs
 	private Presentation presentation; //Commands are given to the presentation
-	
-	private static final long serialVersionUID = 227L;
-	
-	protected static final String ABOUT = "About";
-	protected static final String FILE = "File";
-	protected static final String EXIT = "Exit";
-	protected static final String GOTO = "Go to";
-	protected static final String HELP = "Help";
-	protected static final String NEW = "New";
-	protected static final String NEXT = "Next";
-	protected static final String OPEN = "Open";
-	protected static final String PAGENR = "Page number?";
-	protected static final String PREV = "Prev";
-	protected static final String SAVE = "Save";
-	protected static final String VIEW = "View";
-	
 	protected static final String TESTFILE = "testPresentation.xml";
 	protected static final String SAVEFILE = "savedPresentation.xml";
 	
@@ -49,8 +33,8 @@ public class MenuController extends MenuBar {
 		parent = frame;
 		presentation = pres;
 		MenuItem menuItem;
-		Menu fileMenu = new Menu(FILE);
-		fileMenu.add(menuItem = mkMenuItem(OPEN));
+		Menu fileMenu = new Menu("File");
+		fileMenu.add(menuItem = mkMenuItem("Open"));
 		menuItem.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent actionEvent) {
 				presentation.clear();
@@ -65,14 +49,14 @@ public class MenuController extends MenuBar {
 				parent.repaint();
 			}
 		} );
-		fileMenu.add(menuItem = mkMenuItem(NEW));
+		fileMenu.add(menuItem = mkMenuItem("New"));
 		menuItem.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent actionEvent) {
 				presentation.clear();
 				parent.repaint();
 			}
 		});
-		fileMenu.add(menuItem = mkMenuItem(SAVE));
+		fileMenu.add(menuItem = mkMenuItem("Save"));
 		menuItem.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Accessor xmlAccessor = new XMLAccessor();
@@ -85,37 +69,37 @@ public class MenuController extends MenuBar {
 			}
 		});
 		fileMenu.addSeparator();
-		fileMenu.add(menuItem = mkMenuItem(EXIT));
+		fileMenu.add(menuItem = mkMenuItem("Exit"));
 		menuItem.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent actionEvent) {
 				presentation.exit(0);
 			}
 		});
 		add(fileMenu);
-		Menu viewMenu = new Menu(VIEW);
-		viewMenu.add(menuItem = mkMenuItem(NEXT));
+		Menu viewMenu = new Menu("View");
+		viewMenu.add(menuItem = mkMenuItem("Next"));
 		menuItem.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent actionEvent) {
 				presentation.nextSlide();
 			}
 		});
-		viewMenu.add(menuItem = mkMenuItem(PREV));
+		viewMenu.add(menuItem = mkMenuItem("Prev"));
 		menuItem.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent actionEvent) {
 				presentation.prevSlide();
 			}
 		});
-		viewMenu.add(menuItem = mkMenuItem(GOTO));
+		viewMenu.add(menuItem = mkMenuItem("Go to"));
 		menuItem.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent actionEvent) {
-				String pageNumberStr = JOptionPane.showInputDialog((Object)PAGENR);
+				String pageNumberStr = JOptionPane.showInputDialog((Object)"Page number?");
 				int pageNumber = Integer.parseInt(pageNumberStr);
 				presentation.setSlideNumber(pageNumber - 1);
 			}
 		});
 		add(viewMenu);
-		Menu helpMenu = new Menu(HELP);
-		helpMenu.add(menuItem = mkMenuItem(ABOUT));
+		Menu helpMenu = new Menu("Help");
+		helpMenu.add(menuItem = mkMenuItem("About"));
 		menuItem.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent actionEvent) {
 				AboutBox.show(parent);
