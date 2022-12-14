@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.HashSet;
 
 
 /**
@@ -15,9 +16,9 @@ import java.util.ArrayList;
 
 public class Presentation {
 	private String showTitle; //The title of the presentation
-	private ArrayList<Slide> showList = null; //An ArrayList with slides
+	private ArrayList<Slide> slides; //An ArrayList with slides
 	private int currentSlideNumber = 0; //The number of the current slide
-	private SlideViewerComponent slideViewComponent = null; //The view component of the slides
+	private SlideViewerComponent slideViewComponent; //The view component of the slides
 
 	public Presentation() {
 		slideViewComponent = null;
@@ -30,7 +31,7 @@ public class Presentation {
 	}
 
 	public int getSize() {
-		return showList.size();
+		return slides.size();
 	}
 
 	public String getTitle() {
@@ -50,9 +51,13 @@ public class Presentation {
 		return currentSlideNumber;
 	}
 
-	//Change the current slide number and report it the the window
+	//Change the current slide number and report it the window
 	public void setSlideNumber(int number) {
-		currentSlideNumber = number;
+			if(number >= 0 && !(number > slides.size() - 1) ){
+			currentSlideNumber = number;
+		} else {
+				currentSlideNumber = (slides.size() - 1);
+			}
 		if (slideViewComponent != null) {
 			slideViewComponent.update(this, getCurrentSlide());
 		}
@@ -67,28 +72,28 @@ public class Presentation {
 
 	//Navigate to the next slide unless we are at the last slide
 	public void nextSlide() {
-		if (currentSlideNumber < (showList.size()-1)) {
+		if (currentSlideNumber < (slides.size()-1)) {
 			setSlideNumber(currentSlideNumber + 1);
 		}
 	}
 
 	//Remove the presentation
 	void clear() {
-		showList = new ArrayList<Slide>();
+		slides = new ArrayList<Slide>();
 		setSlideNumber(-1);
 	}
 
 	//Add a slide to the presentation
 	public void append(Slide slide) {
-		showList.add(slide);
+		slides.add(slide);
 	}
 
 	//Return a slide with a specific number
 	public Slide getSlide(int number) {
-		if (number < 0 || number >= getSize()){
-			return null;
+		if (number >= 0 && number <= slides.size()){
+			return slides.get(number);
 	    }
-			return (Slide)showList.get(number);
+		return slides.get(slides.size() -1);
 	}
 
 	//Return the current slide
