@@ -55,8 +55,10 @@ public class Presentation {
 	public void setSlideNumber(int number) {
 			if(number >= 0 && !(number > slides.size() - 1) ){
 			currentSlideNumber = number;
-		} else {
+		} else if (number > slides.size() - 1) {
 				currentSlideNumber = (slides.size() - 1);
+			} else {
+				currentSlideNumber = 0;
 			}
 		if (slideViewComponent != null) {
 			slideViewComponent.update(this, getCurrentSlide());
