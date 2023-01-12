@@ -29,12 +29,18 @@ public class MenuController extends MenuBar {
 	protected static final String LOADERR = "Load Error";
 	protected static final String SAVEERR = "Save Error";
 
-	public MenuController(Frame frame, Presentation pres) {
-		parent = frame;
-		presentation = pres;
-		MenuItem menuItem;
-		Menu fileMenu = new Menu("File");
-		fileMenu.add(menuItem = mkMenuItem("Open"));
+	//Creating a menu-item
+	public MenuItem mkMenuItem(String name) {
+		return new MenuItem(name, new MenuShortcut(name.charAt(0)));
+	}
+
+
+	public MenuController(Frame parent, Presentation presentation) {
+		MenuItem menuItem;  //inisciate menuItem
+		Menu fileMenu = new Menu("File"); //make menu
+
+		fileMenu.add(menuItem = mkMenuItem("Open")); //add menuItem To menu
+
 		menuItem.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent actionEvent) {
 				presentation.clear();
@@ -49,6 +55,7 @@ public class MenuController extends MenuBar {
 				parent.repaint();
 			}
 		} );
+
 		fileMenu.add(menuItem = mkMenuItem("New"));
 		menuItem.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent actionEvent) {
@@ -56,6 +63,7 @@ public class MenuController extends MenuBar {
 				parent.repaint();
 			}
 		});
+
 		fileMenu.add(menuItem = mkMenuItem("Save"));
 		menuItem.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -68,6 +76,7 @@ public class MenuController extends MenuBar {
 				}
 			}
 		});
+
 		fileMenu.addSeparator();
 		fileMenu.add(menuItem = mkMenuItem("Exit"));
 		menuItem.addActionListener(new ActionListener() {
@@ -75,7 +84,9 @@ public class MenuController extends MenuBar {
 				presentation.exit(0);
 			}
 		});
+
 		add(fileMenu);
+//////////VIEWMENU
 		Menu viewMenu = new Menu("View");
 		viewMenu.add(menuItem = mkMenuItem("Next"));
 		menuItem.addActionListener(new ActionListener() {
@@ -83,12 +94,14 @@ public class MenuController extends MenuBar {
 				presentation.nextSlide();
 			}
 		});
+
 		viewMenu.add(menuItem = mkMenuItem("Prev"));
 		menuItem.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent actionEvent) {
 				presentation.prevSlide();
 			}
 		});
+
 		viewMenu.add(menuItem = mkMenuItem("Go to"));
 		menuItem.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent actionEvent) {
@@ -97,7 +110,9 @@ public class MenuController extends MenuBar {
 				presentation.setSlideNumber(pageNumber - 1);
 			}
 		});
+
 		add(viewMenu);
+//////////HELPMENU
 		Menu helpMenu = new Menu("Help");
 		helpMenu.add(menuItem = mkMenuItem("About"));
 		menuItem.addActionListener(new ActionListener() {
@@ -105,11 +120,7 @@ public class MenuController extends MenuBar {
 				AboutBox.show(parent);
 			}
 		});
-		setHelpMenu(helpMenu);		//Needed for portability (Motif, etc.).
-	}
 
-//Creating a menu-item
-	public MenuItem mkMenuItem(String name) {
-		return new MenuItem(name, new MenuShortcut(name.charAt(0)));
+		setHelpMenu(helpMenu);		//Needed for portability (Motif, etc.).
 	}
 }

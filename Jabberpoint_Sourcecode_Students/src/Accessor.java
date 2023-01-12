@@ -17,11 +17,11 @@ public abstract class Accessor {
 	public static final String DEMO_NAME = "Demo presentation";
 	public static final String DEFAULT_EXTENSION = ".xml";
 
-	public static Accessor getDemoAccessor() {
-		return new DemoPresentation();
+	public Accessor() {
 	}
 
-	public Accessor() {
+	public static Accessor getDemoAccessor() {
+		return new DemoPresentation();
 	}
 
 	abstract public void loadFile(Presentation p, String fn) throws IOException;

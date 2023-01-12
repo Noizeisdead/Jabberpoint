@@ -27,11 +27,12 @@ public class JabberPoint {
 	public static void main(String[] argv) {
 
 		styles = new Style[5];
- 		styles[0] = new Style(0, Color.red,   48, 20);	// style item-level 0
- 		styles[1] = new Style(20, Color.blue,  40, 10);	// style item-level 1
- 		styles[2] = new Style(50, Color.black, 36, 10);	// style item-level 2
- 		styles[3] = new Style(70, Color.black, 30, 10);	// style item-level 3
- 		styles[4] = new Style(90, Color.black, 24, 10);	// style item-level 4
+ 		styles[0] = StyleFactory.createStyle(0);
+ 		styles[1] = StyleFactory.createStyle(1);
+ 		styles[2] = StyleFactory.createStyle(2);
+ 		styles[3] = StyleFactory.createStyle(3);
+ 		styles[4] = StyleFactory.createStyle(4);
+
 		Presentation presentation = new Presentation();
 
 		new SlideViewerFrame(JABVERSION, presentation);
