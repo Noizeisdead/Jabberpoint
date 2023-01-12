@@ -26,23 +26,10 @@ import org.w3c.dom.NodeList;
  */
 
 public class XMLAccessor extends Accessor {
-	
-    /** Default API to use. */
-    protected static final String DEFAULT_API_TO_USE = "dom";
-    
-    /** Names of xml tags of attributes */
-    protected static final String SHOWTITLE = "showtitle";
-    protected static final String SLIDETITLE = "title";
-    protected static final String SLIDE = "slide";
-    protected static final String ITEM = "item";
-    protected static final String LEVEL = "level";
-    protected static final String KIND = "kind";
-    protected static final String TEXT = "text";
-    protected static final String IMAGE = "image";
-    
+
+
     /** Text of messages */
     protected static final String PCE = "Parser Configuration Exception";
-    protected static final String UNKNOWNTYPE = "Unknown Element type";
     protected static final String NFE = "Number Format Exception";
     
     
@@ -58,17 +45,17 @@ public class XMLAccessor extends Accessor {
 			DocumentBuilder builder = DocumentBuilderFactory.newInstance().newDocumentBuilder();    
 			Document document = builder.parse(new File(filename)); //Create a JDOM document
 			Element doc = document.getDocumentElement();
-			presentation.setTitle(getTitle(doc, SHOWTITLE));
+			presentation.setTitle(getTitle(doc, "show title"));
 
-			NodeList slides = doc.getElementsByTagName(SLIDE);
+			NodeList slides = doc.getElementsByTagName("slide");
 			max = slides.getLength();
 			for (slideNumber = 0; slideNumber < max; slideNumber++) {
 				Element xmlSlide = (Element) slides.item(slideNumber);
 				Slide slide = new Slide();
-				slide.setTitle(getTitle(xmlSlide, SLIDETITLE));
+				slide.setTitle(getTitle(xmlSlide, "title"));
 				presentation.append(slide);
 				
-				NodeList slideItems = xmlSlide.getElementsByTagName(ITEM);
+				NodeList slideItems = xmlSlide.getElementsByTagName("item");
 				maxItems = slideItems.getLength();
 				for (itemNumber = 0; itemNumber < maxItems; itemNumber++) {
 					Element item = (Element) slideItems.item(itemNumber);
@@ -90,7 +77,7 @@ public class XMLAccessor extends Accessor {
 	protected void loadSlideItem(Slide slide, Element item) {
 		int level = 1; // default
 		NamedNodeMap attributes = item.getAttributes();
-		String leveltext = attributes.getNamedItem(LEVEL).getTextContent();
+		String leveltext = attributes.getNamedItem("level").getTextContent();
 		if (leveltext != null) {
 			try {
 				level = Integer.parseInt(leveltext);
@@ -99,16 +86,16 @@ public class XMLAccessor extends Accessor {
 				System.err.println(NFE);
 			}
 		}
-		String type = attributes.getNamedItem(KIND).getTextContent();
-		if (TEXT.equals(type)) {
+		String type = attributes.getNamedItem("kind").getTextContent();
+		if ("text".equals(type)) {
 			slide.append(new TextItem(level, item.getTextContent()));
 		}
 		else {
-			if (IMAGE.equals(type)) {
+			if ("image".equals(type)) {
 				slide.append(new BitmapItem(level, item.getTextContent()));
 			}
 			else {
-				System.err.println(UNKNOWNTYPE);
+				System.err.println("Unknown Element type");
 			}
 		}
 	}
