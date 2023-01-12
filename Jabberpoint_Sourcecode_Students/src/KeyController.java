@@ -23,16 +23,15 @@ public class KeyController extends KeyAdapter {
 			case KeyEvent.VK_PAGE_DOWN:
 			case KeyEvent.VK_DOWN:
 			case KeyEvent.VK_ENTER:
-			case '+':
+			case KeyEvent.VK_EQUALS, KeyEvent.CTRL_DOWN_MASK:
 				presentation.nextSlide();
 				break;
 			case KeyEvent.VK_PAGE_UP:
 			case KeyEvent.VK_UP:
-			case '-':
+			case KeyEvent.VK_MINUS:
 				presentation.prevSlide();
 				break;
-			case 'q':
-			case 'Q':
+			case KeyEvent.VK_Q:
 				System.exit(0);
 				break; //Should not be reached
 			default:
