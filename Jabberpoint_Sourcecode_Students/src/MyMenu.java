@@ -5,7 +5,6 @@ import java.awt.event.ActionListener;
 import java.io.IOException;
 
 public class MyMenu {
-    private Presentation presentation;
     private Frame frame;
     protected static final String TESTFILE = "testPresentation.xml";
     protected static final String SAVEFILE = "savedPresentation.xml";
@@ -15,7 +14,7 @@ public class MyMenu {
     protected static final String SAVEERR = "Save Error";
 
 
-    public void openFile(MenuItem menuItem) {
+    public void openFile(MenuItem menuItem, Presentation presentation) {
         menuItem.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent actionEvent) {
                 presentation.clear();
@@ -32,7 +31,7 @@ public class MyMenu {
         } );
     }
 
-    public void addFile(MenuItem menuItem){
+    public void addFile(MenuItem menuItem, Presentation presentation){
         menuItem.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent actionEvent) {
                 presentation.clear();
@@ -41,7 +40,7 @@ public class MyMenu {
         });
     }
 
-    public void saveFile(MenuItem menuItem){
+    public void saveFile(MenuItem menuItem, Presentation presentation){
         menuItem.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 Accessor xmlAccessor = new XMLAccessor();
@@ -55,7 +54,7 @@ public class MyMenu {
         });
     }
 
-    public void exitJabberpoint(MenuItem menuItem){
+    public void exitJabberpoint(MenuItem menuItem, Presentation presentation){
         menuItem.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent actionEvent) {
                 presentation.exit(0);
@@ -63,7 +62,7 @@ public class MyMenu {
         });
     }
 
-    public void nextPage(MenuItem menuItem){
+    public void nextPage(MenuItem menuItem, Presentation presentation){
         menuItem.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent actionEvent) {
                 presentation.nextSlide();
@@ -71,7 +70,7 @@ public class MyMenu {
         });
     }
 
-    public void prevSlide(MenuItem menuItem){
+    public void prevSlide(MenuItem menuItem, Presentation presentation){
         menuItem.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent actionEvent) {
                 presentation.prevSlide();
@@ -79,7 +78,7 @@ public class MyMenu {
         });
     }
 
-    public void goToSlide(MenuItem menuItem){
+    public void goToSlide(MenuItem menuItem, Presentation presentation){
         menuItem.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent actionEvent) {
                 String pageNumberStr = JOptionPane.showInputDialog((Object)"Page number?");
@@ -89,7 +88,7 @@ public class MyMenu {
         });
     }
 
-    public void aboutBox(MenuItem menuItem){
+    public void aboutBox(MenuItem menuItem, Presentation presentation){
         menuItem.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent actionEvent) {
                 AboutBox.show(frame);

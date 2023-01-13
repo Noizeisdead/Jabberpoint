@@ -30,47 +30,46 @@ public class MenuController extends MenuBar {
 	protected static final String SAVEERR = "Save Error";
 
 	//Creating a menu-item
-	public MenuItem mkMenuItem(String name) {
-		return new MenuItem(name, new MenuShortcut(name.charAt(0)));
-	}
+
 
 
 	public MenuController(Frame parent, Presentation presentation) {
 		MenuItem menuItem;  //inisciate menuItem
+		MyMenu myMenu = new MyMenu();
 		Menu fileMenu = new Menu("File"); //make menu
 
-		fileMenu.add(menuItem = mkMenuItem("Open")); //add menuItem To menu
+		fileMenu.add(menuItem = MenuFactory.mkMenuItem("Open")); //add menuItem To menu
 
-		myMenu.openFile(menuItem);
+		myMenu.openFile(menuItem, presentation);
 
-		fileMenu.add(menuItem = mkMenuItem("New"));
-		myMenu.addFile(menuItem);
+		fileMenu.add(menuItem = MenuFactory.mkMenuItem("New"));
+		myMenu.addFile(menuItem, presentation);
 
-		fileMenu.add(menuItem = mkMenuItem("Save"));
+		fileMenu.add(menuItem = MenuFactory.mkMenuItem("Save"));
 
-		myMenu.saveFile(menuItem);
+		myMenu.saveFile(menuItem, presentation);
 
 		fileMenu.addSeparator();
-		fileMenu.add(menuItem = mkMenuItem("Exit"));
-		myMenu.exitJabberpoint(menuItem);
+		fileMenu.add(menuItem = MenuFactory.mkMenuItem("Exit"));
+		myMenu.exitJabberpoint(menuItem, presentation);
 
 		add(fileMenu);
 //////////VIEWMENU
 		Menu viewMenu = new Menu("View");
-		viewMenu.add(menuItem = mkMenuItem("Next"));
-		myMenu.nextPage(menuItem);
+		viewMenu.add(menuItem = MenuFactory.mkMenuItem("Next"));
+		myMenu.nextPage(menuItem, presentation);
 
-		viewMenu.add(menuItem = mkMenuItem("Prev"));
-		myMenu.prevSlide(menuItem);
+		viewMenu.add(menuItem = MenuFactory.mkMenuItem("Prev"));
+		myMenu.prevSlide(menuItem, presentation);
 
-		viewMenu.add(menuItem = mkMenuItem("Go to"));
-		myMenu.goToSlide(menuItem);
+		viewMenu.add(menuItem = MenuFactory.mkMenuItem("Go to"));
+		myMenu.goToSlide(menuItem, presentation);
 
 		add(viewMenu);
 //////////HELPMENU
 		Menu helpMenu = new Menu("Help");
-		helpMenu.add(menuItem = mkMenuItem("About"));
-		myMenu.aboutBox(menuItem);
+		helpMenu.add(menuItem = MenuFactory.mkMenuItem("About"));
+		myMenu.aboutBox(menuItem, presentation);
 
 		setHelpMenu(helpMenu);		//Needed for portability (Motif, etc.).
 	}

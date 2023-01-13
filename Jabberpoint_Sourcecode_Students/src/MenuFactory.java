@@ -1,6 +1,8 @@
+import java.awt.*;
+
 public class MenuFactory {
 
-    public static Style createStyle(int level){
-        return null;
+    public static MenuItem mkMenuItem(String name) {
+        return new MenuItem(name, new MenuShortcut(name.charAt(0)));
     }
 }
