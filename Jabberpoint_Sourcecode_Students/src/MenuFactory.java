@@ -25,18 +25,18 @@ public class MenuFactory {
         fileMenu.add(menuItem = MenuFactory.mkMenuItem("Open")); //add menuItem To menu
 
 
-        myMenu.openFile(menuItem, presentation);
+        myMenu.openFile(menuItem, presentation, new Frame());
 
         fileMenu.add(menuItem = MenuFactory.mkMenuItem("New"));
-        myMenu.addFile(menuItem, presentation);
+        myMenu.addFile(menuItem, presentation, new Frame());
 
         fileMenu.add(menuItem = MenuFactory.mkMenuItem("Save"));
 
-        myMenu.saveFile(menuItem, presentation);
+        myMenu.saveFile(menuItem, presentation, new Frame());
 
         fileMenu.addSeparator();
         fileMenu.add(menuItem = MenuFactory.mkMenuItem("Exit"));
-        myMenu.exitJabberpoint(menuItem, presentation);
+        myMenu.exitJabberpoint(menuItem, presentation, new Frame());
         return fileMenu;
     }
 

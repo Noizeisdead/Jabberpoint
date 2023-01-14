@@ -35,7 +35,7 @@ public class XMLAccessor extends Accessor {
     
     private String getTitle(Element element, String tagName) {
     	NodeList titles = element.getElementsByTagName(tagName);
-    	return titles.item(0).getTextContent();
+    	return titles.item(0).getTextContent(); //Is null when open file
     	
     }
 
@@ -45,7 +45,7 @@ public class XMLAccessor extends Accessor {
 			DocumentBuilder builder = DocumentBuilderFactory.newInstance().newDocumentBuilder();    
 			Document document = builder.parse(new File(filename)); //Create a JDOM document
 			Element doc = document.getDocumentElement();
-			presentation.setTitle(getTitle(doc, "show title"));
+			presentation.setTitle(getTitle(doc, "show title")); //open file it breaks
 
 			NodeList slides = doc.getElementsByTagName("slide");
 			max = slides.getLength();
@@ -108,12 +108,13 @@ public class XMLAccessor extends Accessor {
 		out.print("<showtitle>");
 		out.print(presentation.getTitle());
 		out.println("</showtitle>");
-		for (int slideNumber=0; slideNumber<presentation.getSize(); slideNumber++) {
-			Slide slide = presentation.getSlide(slideNumber);
+		for (int slideNumber = 0; slideNumber < presentation.getSize(); slideNumber++) {
+			Slide slide; // dddd
+			slide = presentation.getSlide(slideNumber);
 			out.println("<slide>");
 			out.println("<title>" + slide.getTitle() + "</title>");
 			Vector<SlideItem> slideItems = slide.getSlideItems();
-			for (int itemNumber = 0; itemNumber<slideItems.size(); itemNumber++) {
+			for (int itemNumber = 0; itemNumber < slideItems.size(); itemNumber++) {
 				SlideItem slideItem = (SlideItem) slideItems.elementAt(itemNumber);
 				out.print("<item kind="); 
 				if (slideItem instanceof TextItem) {
@@ -124,6 +125,7 @@ public class XMLAccessor extends Accessor {
 					if (slideItem instanceof BitmapItem) {
 						out.print("\"image\" level=\"" + slideItem.getLevel() + "\">");
 						out.print( ( (BitmapItem) slideItem).getName());
+
 					}
 					else {
 						System.out.println("Ignoring " + slideItem);

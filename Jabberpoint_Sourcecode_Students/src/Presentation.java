@@ -78,7 +78,7 @@ public class Presentation {
 	//Remove the presentation
 	void clear() {
 		slides = new ArrayList<Slide>();
-		setSlideNumber(0);
+		setSlideNumber(-1);
 	}
 
 	//Add a slide to the presentation

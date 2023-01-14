@@ -14,7 +14,7 @@ public class MyMenu {
     protected static final String SAVEERR = "Save Error";
 
 
-    public void openFile(MenuItem menuItem, Presentation presentation) {
+    public void openFile(MenuItem menuItem, Presentation presentation, Frame frame) {
         menuItem.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent actionEvent) {
                 presentation.clear();
@@ -31,7 +31,7 @@ public class MyMenu {
         } );
     }
 
-    public void addFile(MenuItem menuItem, Presentation presentation){
+    public void addFile(MenuItem menuItem, Presentation presentation, Frame frame){
         menuItem.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent actionEvent) {
                 presentation.clear();
@@ -40,7 +40,7 @@ public class MyMenu {
         });
     }
 
-    public void saveFile(MenuItem menuItem, Presentation presentation){
+    public void saveFile(MenuItem menuItem, Presentation presentation, Frame frame){
         menuItem.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 Accessor xmlAccessor = new XMLAccessor();
@@ -54,7 +54,7 @@ public class MyMenu {
         });
     }
 
-    public void exitJabberpoint(MenuItem menuItem, Presentation presentation){
+    public void exitJabberpoint(MenuItem menuItem, Presentation presentation, Frame frame){
         menuItem.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent actionEvent) {
                 presentation.exit(0);
