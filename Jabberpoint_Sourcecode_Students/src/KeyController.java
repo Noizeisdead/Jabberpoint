@@ -14,28 +14,19 @@ import java.awt.event.KeyAdapter;
 public class KeyController extends KeyAdapter {
 	private Presentation presentation; //Commands are given to the presentation
 
-	public KeyController(Presentation p) {
-		presentation = p;
+	public KeyController(Presentation presentation) {
+		this.presentation = presentation;
 	}
 
 	public void keyPressed(KeyEvent keyEvent) {
-		switch(keyEvent.getKeyCode()) {
-			case KeyEvent.VK_PAGE_DOWN:
-			case KeyEvent.VK_DOWN:
-			case KeyEvent.VK_ENTER:
-			case KeyEvent.VK_EQUALS, KeyEvent.CTRL_DOWN_MASK:
-				presentation.nextSlide();
-				break;
-			case KeyEvent.VK_PAGE_UP:
-			case KeyEvent.VK_UP:
-			case KeyEvent.VK_MINUS:
-				presentation.prevSlide();
-				break;
-			case KeyEvent.VK_Q:
-				System.exit(0);
-				break; //Should not be reached
-			default:
-				break;
+		switch (keyEvent.getKeyCode()) {
+			case KeyEvent.VK_PAGE_DOWN, KeyEvent.VK_DOWN, KeyEvent.VK_ENTER, KeyEvent.VK_EQUALS, KeyEvent.CTRL_DOWN_MASK ->
+					this.presentation.nextSlide();
+			case KeyEvent.VK_PAGE_UP, KeyEvent.VK_UP, KeyEvent.VK_MINUS -> this.presentation.prevSlide();
+			case KeyEvent.VK_Q -> System.exit(0);
+			//Should not be reached
+			default -> {
+			}
 		}
 	}
 }
