@@ -17,13 +17,9 @@ import java.util.HashSet;
 public class Presentation {
 	private String showTitle; //The title of the presentation
 	private ArrayList<Slide> slides; //An ArrayList with slides
-	private int currentSlideNumber = 0; //The number of the current slide
+	private int currentSlideNumber; //The number of the current slide
 	private SlideViewerComponent slideViewComponent; //The view component of the slides
-
-	public Presentation() {
-		slideViewComponent = null;
-		clear();
-	}
+	
 
 	public Presentation(SlideViewerComponent slideViewerComponent) {
 		this.slideViewComponent = slideViewerComponent;

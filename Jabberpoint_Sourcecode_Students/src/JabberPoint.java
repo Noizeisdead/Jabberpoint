@@ -33,7 +33,7 @@ public class JabberPoint {
  		styles[3] = StyleFactory.createStyle(3);
  		styles[4] = StyleFactory.createStyle(4);
 
-		Presentation presentation = new Presentation();
+		Presentation presentation = new Presentation(null);
 
 		new SlideViewerFrame(JABVERSION, presentation);
 		try {

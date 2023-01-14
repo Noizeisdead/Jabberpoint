@@ -20,44 +20,16 @@ import javax.swing.JOptionPane;
  */
 public class MenuController extends MenuBar {
 
+	//private Presentation presentation;
 	public MenuController(Presentation presentation) {
-		MenuItem menuItem;  //inisciate menuItem
-		MyMenu myMenu = new MyMenu();
-		Menu fileMenu = new Menu("File"); //make menu
-
-		fileMenu.add(menuItem = MenuFactory.mkMenuItem("Open")); //add menuItem To menu
-
-		myMenu.openFile(menuItem, presentation);
-
-		fileMenu.add(menuItem = MenuFactory.mkMenuItem("New"));
-		myMenu.addFile(menuItem, presentation);
-
-		fileMenu.add(menuItem = MenuFactory.mkMenuItem("Save"));
-
-		myMenu.saveFile(menuItem, presentation);
-
-		fileMenu.addSeparator();
-		fileMenu.add(menuItem = MenuFactory.mkMenuItem("Exit"));
-		myMenu.exitJabberpoint(menuItem, presentation);
-
+		Menu fileMenu = MenuFactory.mkFileMenu(presentation);
 		add(fileMenu);
-//////////VIEWMENU
-		Menu viewMenu = new Menu("View");
-		viewMenu.add(menuItem = MenuFactory.mkMenuItem("Next"));
-		myMenu.nextPage(menuItem, presentation);
-
-		viewMenu.add(menuItem = MenuFactory.mkMenuItem("Prev"));
-		myMenu.prevSlide(menuItem, presentation);
-
-		viewMenu.add(menuItem = MenuFactory.mkMenuItem("Go to"));
-		myMenu.goToSlide(menuItem, presentation);
-
+		Menu viewMenu = MenuFactory.mkViewMenu(presentation);
 		add(viewMenu);
-//////////HELPMENU
-		Menu helpMenu = new Menu("Help");
-		helpMenu.add(menuItem = MenuFactory.mkMenuItem("About"));
-		myMenu.aboutBox(menuItem, presentation);
-
+		Menu helpMenu = MenuFactory.mkHelpMenu(presentation);
 		setHelpMenu(helpMenu);		//Needed for portability (Motif, etc.).
+		add(helpMenu);
+
 	}
+
 }
