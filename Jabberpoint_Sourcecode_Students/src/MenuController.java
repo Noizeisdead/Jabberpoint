@@ -20,20 +20,7 @@ import javax.swing.JOptionPane;
  */
 public class MenuController extends MenuBar {
 
-	private MyMenu myMenu;
-	private Frame parent; //The frame, only used as parent for the Dialogs
-	protected static final String TESTFILE = "testPresentation.xml";
-	protected static final String SAVEFILE = "savedPresentation.xml";
-	
-	protected static final String IOEX = "IO Exception: ";
-	protected static final String LOADERR = "Load Error";
-	protected static final String SAVEERR = "Save Error";
-
-	//Creating a menu-item
-
-
-
-	public MenuController(Frame parent, Presentation presentation) {
+	public MenuController(Presentation presentation) {
 		MenuItem menuItem;  //inisciate menuItem
 		MyMenu myMenu = new MyMenu();
 		Menu fileMenu = new Menu("File"); //make menu
