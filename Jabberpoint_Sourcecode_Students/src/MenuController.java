@@ -20,7 +20,6 @@ import javax.swing.JOptionPane;
  */
 public class MenuController extends MenuBar {
 
-	//private Presentation presentation;
 	public MenuController(Presentation presentation) {
 		Menu fileMenu = MenuFactory.mkFileMenu(presentation);
 		add(fileMenu);

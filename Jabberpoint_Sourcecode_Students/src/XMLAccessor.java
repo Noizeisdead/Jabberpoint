@@ -27,7 +27,7 @@ import org.w3c.dom.NodeList;
  */
 
 public class XMLAccessor extends Accessor {
-	
+
 
 	/** Text of messages */
 	protected static final String PCE = "Parser Configuration Exception";
@@ -80,10 +80,10 @@ public class XMLAccessor extends Accessor {
 	protected void loadSlideItem(Slide slide, Element item) {
 		int level = 1; // default
 		NamedNodeMap attributes = item.getAttributes();
-		String leveltext = attributes.getNamedItem("level").getTextContent();
-		if (leveltext != null) {
+		String levelText = attributes.getNamedItem("level").getTextContent();
+		if (levelText != null) {
 			try {
-				level = Integer.parseInt(leveltext);
+				level = Integer.parseInt(levelText);
 			}
 			catch(NumberFormatException x) {
 				System.err.println(NFE);
