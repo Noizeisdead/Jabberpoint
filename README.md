@@ -30,3 +30,19 @@ First Jabberpoint:
 
 Refacored Jabberpoint
 ![Refactored jabberpoint](/ClassDiagramms/RefactoredJabber.png)
+
+
+## Use case diagram
+![UseCase](/ClassDiagramms/UseCaseDiagram.png)
+
+
+## Activity flow diagrams
+
+Switch slide: 
+
+![Switch slide](/ClassDiagramms/SwitchSlideFlow.png)
+
+
+Exit jabberpoint:
+
+![Exit](/ClassDiagramms/ExitFlow.png)
