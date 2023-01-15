@@ -1,6 +1,9 @@
 import java.awt.Rectangle;
 import java.awt.Graphics;
 import java.awt.image.ImageObserver;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.PrintWriter;
 
 /** <p>The abstract class for items on a slide.<p>
  * <p>All SlideItems have drawing capabilities.</p>
@@ -32,4 +35,6 @@ public abstract class SlideItem {
 //Draws the item
 	public abstract void draw(int x, int y, float scale, 
 			Graphics g, Style style, ImageObserver observer);
+
+	public abstract void printXml(PrintWriter out) ;
 }

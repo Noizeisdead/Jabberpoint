@@ -2,11 +2,9 @@ import java.awt.Rectangle;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import java.awt.image.ImageObserver;
-import java.io.File;
+import java.io.*;
 
 import javax.imageio.ImageIO;
-
-import java.io.IOException;
 
 
 /** <p>The class for a Bitmap item</p>
@@ -68,5 +66,10 @@ public class BitmapItem extends SlideItem {
 
 	public String toString() {
 		return "BitmapItem[" + getLevel() + "," + imageName + "]";
+	}
+
+	public void printXml(PrintWriter out) {
+		out.print("\"image\" level=\"" + this.getLevel() + "\">");
+		out.print(((BitmapItem) this).getName());
 	}
 }
