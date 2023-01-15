@@ -18,9 +18,9 @@ public class MyMenu {
         menuItem.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent actionEvent) {
                 presentation.clear();
-                Accessor xmlAccessor = new XMLAccessor();
+                Accessor accessor = new XMLAccessor();
                 try {
-                    xmlAccessor.loadFile(presentation, TESTFILE);
+                    accessor.loadFile(presentation, TESTFILE);
                     presentation.setSlideNumber(0);
                 } catch (IOException exc) {
                     JOptionPane.showMessageDialog(frame, IOEX + exc,
@@ -43,7 +43,7 @@ public class MyMenu {
     public void saveFile(MenuItem menuItem, Presentation presentation, Frame frame){
         menuItem.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                Accessor xmlAccessor = new XMLAccessor();
+                XMLAccessor xmlAccessor = new XMLAccessor();
                 try {
                     xmlAccessor.saveFile(presentation, SAVEFILE);
                 } catch (IOException exc) {

@@ -27,26 +27,28 @@ import org.w3c.dom.NodeList;
  */
 
 public class XMLAccessor extends Accessor {
+	
 
-
+	/** Text of messages */
+	protected static final String PCE = "Parser Configuration Exception";
+	protected static final String NFE = "Number Format Exception";
     /** Text of messages */
-    protected static final String PCE = "Parser Configuration Exception";
-    protected static final String NFE = "Number Format Exception";
-    
-    
-    private String getTitle(Element element, String tagName) {
-    	NodeList titles = element.getElementsByTagName(tagName);
-    	return titles.item(0).getTextContent(); //Is null when open file
-    	
-    }
+
+
+
+	private String getTitle(Element element, String tagName) {
+		NodeList titles = element.getElementsByTagName(tagName);
+		return titles.item(0).getTextContent();
+
+	}
 
 	public void loadFile(Presentation presentation, String filename) throws IOException {
 		int slideNumber, itemNumber, max = 0, maxItems = 0;
 		try {
-			DocumentBuilder builder = DocumentBuilderFactory.newInstance().newDocumentBuilder();    
+			DocumentBuilder builder = DocumentBuilderFactory.newInstance().newDocumentBuilder();
 			Document document = builder.parse(new File(filename)); //Create a JDOM document
 			Element doc = document.getDocumentElement();
-			presentation.setTitle(getTitle(doc, "show title")); //open file it breaks
+			presentation.setTitle(getTitle(doc, "showtitle"));
 
 			NodeList slides = doc.getElementsByTagName("slide");
 			max = slides.getLength();
@@ -55,7 +57,7 @@ public class XMLAccessor extends Accessor {
 				Slide slide = new Slide();
 				slide.setTitle(getTitle(xmlSlide, "title"));
 				presentation.append(slide);
-				
+
 				NodeList slideItems = xmlSlide.getElementsByTagName("item");
 				maxItems = slideItems.getLength();
 				for (itemNumber = 0; itemNumber < maxItems; itemNumber++) {
@@ -63,7 +65,7 @@ public class XMLAccessor extends Accessor {
 					loadSlideItem(slide, item);
 				}
 			}
-		} 
+		}
 		catch (IOException iox) {
 			System.err.println(iox.toString());
 		}
@@ -72,7 +74,7 @@ public class XMLAccessor extends Accessor {
 		}
 		catch (ParserConfigurationException pcx) {
 			System.err.println(PCE);
-		}	
+		}
 	}
 
 	protected void loadSlideItem(Slide slide, Element item) {
